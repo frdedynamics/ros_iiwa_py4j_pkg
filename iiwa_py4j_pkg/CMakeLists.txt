@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    JointCommandPosition.msg
+   JointCommandEffort.msg
 )
 generate_messages(
     DEPENDENCIES
