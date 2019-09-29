@@ -15,7 +15,7 @@ FRI = GATEWAY.entry_point
 def talker():
     """ docsctring, yo! """
     
-    joint_state_pub = rospy.Publisher('joint_states', JointState, queue_size=1)
+    joint_state_pub = rospy.Publisher('iiwa_joint_states', JointState, queue_size=1)
     rospy.init_node('kuka_joint_state', anonymous=True)
     rate = rospy.Rate(10)  # 10hz
     while not rospy.is_shutdown():
