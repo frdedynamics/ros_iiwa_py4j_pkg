@@ -12,7 +12,7 @@ GATEWAY = JavaGateway()
 
 FRI = GATEWAY.entry_point
 
-TMP_PREV = (0,0)
+TMP_PREV = (0, 0)
 
 
 def talker():
@@ -37,8 +37,8 @@ def talker():
             msg.header.stamp.secs = int(tmp[0])
             msg.header.stamp.nsecs = int(tmp[1])
             msg.name = ['joint_a1', 'joint_a2', 'joint_a3', 'joint_a4', 'joint_a5', 'joint_a6', 'joint_a7']
-            msg.position = [tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8]]
-            msg.effort = [tmp[9],tmp[10],tmp[11],tmp[12],tmp[13],tmp[14],tmp[15]]
+            msg.position = [tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7], tmp[8]]
+            msg.effort = [tmp[9], tmp[10], tmp[11], tmp[12], tmp[13], tmp[14], tmp[15]]
 
             if (tmp[0] + tmp[1]/1e9) != (TMP_PREV[0] + TMP_PREV[1]/1e9):
                 joint_state_pub.publish(msg)
@@ -64,6 +64,7 @@ def talker():
                 
         except Exception as exception_e:
             rospy.logerr("%s", exception_e)
+
 
 if __name__ == '__main__':
     MYARGV = rospy.myargv(argv=sys.argv)
