@@ -6,6 +6,7 @@ import rospy
 from py4j.java_gateway import JavaGateway
 
 from sensor_msgs.msg import JointState
+from iiwa_py4j_pkg.msg import ExternalTorque
 
 GATEWAY = JavaGateway()
 
@@ -19,6 +20,7 @@ def talker():
     global TMP_PREV
 
     joint_state_pub = rospy.Publisher('iiwa_joint_states', JointState, queue_size=1)
+    external_torque_pub = rospy.Publisher('iiwa_external_torque', ExternalTorque, queue_size=1)
     rospy.init_node('kuka_joint_state', anonymous=True)
 
     previous_iiwa_seconds_and_nano = 0.0
@@ -46,8 +48,12 @@ def talker():
             msg.velocity = latest_joint_velocities
             msg.effort = [tmp[9], tmp[10], tmp[11], tmp[12], tmp[13], tmp[14], tmp[15]]
 
+            msg_ext_tau = ExternalTorque()
+            msg_ext_tau.values = [tmp[16], tmp[17], tmp[18], tmp[19], tmp[20], tmp[21], tmp[22]]
+
             if latest_delta_iiwa_seconds_and_nano != previous_iiwa_seconds_and_nano:
                 joint_state_pub.publish(msg)
+                external_torque_pub.publish(msg_ext_tau)
 
             previous_iiwa_seconds_and_nano = latest_iiwa_seconds_and_nano
             previous_joint_positions = latest_joint_positions

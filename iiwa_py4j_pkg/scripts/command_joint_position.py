@@ -14,8 +14,8 @@ FRI = GATEWAY.entry_point
 
 def callback(data):
     """ function docstring, yo! """
-    rospy.loginfo("%f %f %f %f %f %f %f", data.values[0], data.values[1], data.values[2], data.values[3],
-                  data.values[4], data.values[5], data.values[6])
+    #rospy.loginfo("%f %f %f %f %f %f %f", data.values[0], data.values[1], data.values[2], data.values[3],
+    #              data.values[4], data.values[5], data.values[6])
     double_array = GATEWAY.new_array(GATEWAY.jvm.double, 7)
 
     for i in range(0, len(data.values)):

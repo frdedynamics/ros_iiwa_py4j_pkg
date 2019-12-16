@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    JointCommandPosition.msg
    JointCommandEffort.msg
+   ExternalTorque.msg
 )
 generate_messages(
     DEPENDENCIES
